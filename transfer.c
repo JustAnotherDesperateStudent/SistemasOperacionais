@@ -32,8 +32,8 @@ void threadFunction( void *arg)
     printf("Transferência concluída com sucesso!\n");
     printf("Saldo de c1: %d\n", from.saldo);
     printf("Saldo de c2: %d\n", to.saldo);
-    printf( "Child fiber yielding to parent\n" );
-    swapcontext( &child, &parent );
+    //printf( "Child fiber yielding to parent\n" );
+    //swapcontext( &child, &parent );
     printf( "Child thread exiting\n" );
     swapcontext( &child, &parent );
     return 0;
@@ -67,8 +67,8 @@ int main()
     // Execute the child context
     printf( "Switching to child fiber\n" );
     swapcontext( &parent, &child );
-    printf( "Switching to child fiber again\n" );
-    swapcontext( &parent, &child );
+    //printf( "Switching to child fiber again\n" );
+    //swapcontext( &parent, &child );
     
     // Free the stack
     free( child.uc_stack.ss_sp );
