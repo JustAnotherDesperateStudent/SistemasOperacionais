@@ -22,9 +22,12 @@ struct c {
 // The child thread will execute this function
 void threadFunction( void *arg)
 {
-    if (from.saldo >= valor){ // 2
-        from.saldo -= valor;
-        to.saldo += valor;
+    int i;
+    for (i = 0; i < 10; i++) {
+        if (from.saldo >= valor){ // 2
+            from.saldo -= valor;
+            to.saldo += valor;
+        }
     }
     printf("Transferência concluída com sucesso!\n");
     printf("Saldo de c1: %d\n", from.saldo);
@@ -38,7 +41,6 @@ void threadFunction( void *arg)
 
 int main()
 {
-    int i;
     // Get the current execution context
     getcontext( &child );
     
@@ -62,11 +64,9 @@ int main()
     to.saldo = 100;
     printf( "Transferindo 10 para a conta c2\n" );
     valor = 10;
-    for (i = 0; i < 10; i++) {
-        // Execute the child context
-        printf( "Switching to child fiber\n" );
-        swapcontext( &parent, &child );
-    }
+    // Execute the child context
+    printf( "Switching to child fiber\n" );
+    swapcontext( &parent, &child );
     printf( "Switching to child fiber again\n" );
     swapcontext( &parent, &child );
     
