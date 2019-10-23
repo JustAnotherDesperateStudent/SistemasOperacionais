@@ -14,7 +14,6 @@ struct c {
  int saldo;
 };
 
-// The child thread will execute this function
 void transfer( void *arg)
 {
     int i;
