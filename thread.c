@@ -22,7 +22,8 @@ void transfer( void *arg)
     }
     else
     {
-        printf("Saldo insuficiente da conta origem");
+        printf("Saldo insuficiente da conta origem\n");
+        pthread_exit(0);
     }
     return;
 }
@@ -34,14 +35,13 @@ int main()
     from.saldo = 100;
     to.saldo = 100;
     valor = 1;
-    for(int i = 0; i < 100; i++)
+    for(int i = 0; i < 102; i++)
     {
         pthread_create(&tid[i], NULL, (void *)transfer, NULL);
-    }
-    for(int i = 0; i < 100; i++)
-    {
-    pthread_join(tid[i], NULL);
-    return 0;
+        if(i != 0)
+        {
+          pthread_join(tid[i], NULL);
+        }
     }
         
 }
