@@ -38,10 +38,7 @@ int main()
     for(int i = 0; i < 102; i++)
     {
         pthread_create(&tid[i], NULL, (void *)transfer, NULL);
-        if(i != 0)
-        {
-          pthread_join(tid[i], NULL);
-        }
+        pthread_join(tid[i], NULL);
     }
         
 }
